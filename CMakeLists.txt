@@ -21,6 +21,15 @@ SET(CMAKE_BUILD_TYPE RelWithDebInfo)
 include_directories(include
 					${catkin_INCLUDE_DIRS} 
 					${EIGEN3_INCLUDE_DIRS})
+add_service_files(
+  FILES
+  ResetGridSrv.srv
+)
+
+generate_messages(
+	DEPENDENCIES
+	std_msgs
+)
 
 catkin_package(
   INCLUDE_DIRS 

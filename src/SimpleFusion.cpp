@@ -14,11 +14,22 @@ SimpleFusion::SimpleFusion(ros::NodeHandle* node, std::string name) : cnbiros::c
 	this->fusiongrid_ = new FusionGrid(name, CNBIROS_FUSION_GRID_X,
 									   		 CNBIROS_FUSION_GRID_Y,
 									   		 CNBIROS_FUSION_GRID_R);
+	this->rossrv_reset_ = node->advertiseService(ros::this_node::getName() + "/reset_grid", 
+						  &SimpleFusion::on_reset_grid, this);
 }
 
 SimpleFusion::~SimpleFusion(void) {
 	delete this->sources_;
 	delete this->fusiongrid_;
+}
+
+bool SimpleFusion::on_reset_grid(cnbiros_fusion::ResetGridSrv::Request& req,
+								 cnbiros_fusion::ResetGridSrv::Response& res) {
+			
+	ROS_INFO("Requested to reset layer: %s (%f)", req.layer.c_str(), req.value);
+	this->fusiongrid_->Reset(req.layer, req.value);
+
+	return true;
 }
 
 bool SimpleFusion::RemoveSource(const std::string topic) {

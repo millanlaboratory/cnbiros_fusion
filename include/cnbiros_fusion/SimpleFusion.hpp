@@ -9,6 +9,7 @@
 #include "cnbiros_core/Subscribers.hpp"
 #include "cnbiros_fusion/Flags.hpp"
 #include "cnbiros_fusion/FusionGrid.hpp"
+#include "cnbiros_fusion/ResetGridSrv.h"
 
 namespace cnbiros {
 	namespace fusion {
@@ -28,6 +29,9 @@ class SimpleFusion : public cnbiros::core::NodeInterface {
 		void on_received_pointcloud(const sensor_msgs::PointCloud::ConstPtr& msg, std::string topic);
 		void on_received_laserscan(const sensor_msgs::LaserScan::ConstPtr& msg, std::string topic);
 		void on_received_point(const geometry_msgs::Point32::ConstPtr& msg, std::string topic);
+
+		bool on_reset_grid(cnbiros_fusion::ResetGridSrv::Request& req,
+						   cnbiros_fusion::ResetGridSrv::Response& res);
 		
 	public:
 		static const unsigned int AsPointCloud  = 0;
@@ -38,6 +42,7 @@ class SimpleFusion : public cnbiros::core::NodeInterface {
 	private:
 		cnbiros::core::Subscribers* sources_;
 		ros::Publisher 				rospub_;
+		ros::ServiceServer			rossrv_reset_;
 		FusionGrid* 				fusiongrid_;	
 };
 
