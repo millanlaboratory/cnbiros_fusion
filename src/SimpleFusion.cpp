@@ -11,9 +11,9 @@ SimpleFusion::SimpleFusion(ros::NodeHandle* node, std::string name) : cnbiros::c
 	
 	this->rospub_ = node->advertise<grid_map_msgs::GridMap>("/"+name, CNBIROS_CORE_BUFFER_MESSAGES);
 	
-	this->fusiongrid_ = new FusionGrid(name, CNBIROS_FUSION_GRID_X,
-									   		 CNBIROS_FUSION_GRID_Y,
-									   		 CNBIROS_FUSION_GRID_R);
+	this->fusiongrid_ = new FusionGrid(name);
+	this->fusiongrid_->SetGeometry(CNBIROS_FUSION_GRID_X, CNBIROS_FUSION_GRID_Y, CNBIROS_FUSION_GRID_R);
+
 	this->rossrv_reset_ = node->advertiseService(ros::this_node::getName() + "/reset_grid", 
 						  &SimpleFusion::on_reset_grid, this);
 }

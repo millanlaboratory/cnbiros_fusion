@@ -14,8 +14,9 @@ namespace cnbiros {
 class FusionGrid : public grid_map::GridMap {
 
 	public:
-		FusionGrid(const std::string& fusion_layer);
-		FusionGrid(const std::string& fusion_layer, const float x, const float y, const float r);
+		FusionGrid(const std::string& fusion_layer, const std::string& frame="base_link");
+		FusionGrid(const std::string& fusion_layer, const std::string& frame, 
+				   const float x, const float y, const float r);
 		~FusionGrid(void);
 
 		void SetGeometry(const float x, const float y, const float r);

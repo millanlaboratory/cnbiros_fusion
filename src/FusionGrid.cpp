@@ -6,17 +6,18 @@
 namespace cnbiros {
 	namespace fusion {
 
-FusionGrid::FusionGrid(const std::string& fusion_layer) {
+FusionGrid::FusionGrid(const std::string& fusion_layer, const std::string& frame) {
 	this->fusion_layer_ = fusion_layer;
 	this->Add(this->fusion_layer_);
-	this->SetFrame("base_link");
+	this->SetFrame(frame);
 }
 
-FusionGrid::FusionGrid(const std::string& fusion_layer, const float x, const float y, const float r) {
+FusionGrid::FusionGrid(const std::string& fusion_layer, const std::string& frame, 
+					   const float x, const float y, const float r) {
 	this->fusion_layer_ = fusion_layer;
 	this->SetGeometry(x, y, r);
 	this->Add(this->fusion_layer_);
-	this->SetFrame("base_link");
+	this->SetFrame(frame);
 }
 
 FusionGrid::~FusionGrid(void) {}
