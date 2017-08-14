@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 	fusion.AddSource("/infrared", SimpleFusion::AsPointCloud); 
 	fusion.AddSource("/camera/scan", SimpleFusion::AsLaserScan); 
 
-	fusion.Start();
+	fusion.Run();
 
 	return 0;
 
