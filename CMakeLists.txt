@@ -46,6 +46,7 @@ catkin_package(
 add_library(cnbiros_fusion 
 			src/SimpleFusion.cpp
 			src/FusionGrid.cpp)
+add_dependencies(cnbiros_fusion cnbiros_fusion_generate_messages_cpp)
 target_link_libraries(cnbiros_fusion ${catkin_LIBRARIES})
 
 add_executable(example_fusion examples/example_fusion.cpp)
